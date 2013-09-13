@@ -4,14 +4,6 @@ Sublime text isort plugin
 Small plugin that adds a command to sublime which replaces the contents with the output of the isort library.
 See below for more information about the library
 
-## Usage
-
-Compile the entire file by not selecting any text (or all the text).
-Compile a section by selecting just that section.
-Keyboard shortcut `alt-shift-r`
-Command Pallette integration `Roy`
-Context menu `right click`
-
 ## Install
 
 ### Package Control
