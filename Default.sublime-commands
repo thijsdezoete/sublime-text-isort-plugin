@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "ImportSort: Sort imports",
+        "command": "isort"
+    }
+]
