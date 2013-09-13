@@ -1,5 +1,7 @@
-import sublime, sublime_plugin
+import sublime
+import sublime_plugin
 from isort import SortImports
+
 
 class IsortCommand(sublime_plugin.TextCommand):
 	def get_region(self, view):
