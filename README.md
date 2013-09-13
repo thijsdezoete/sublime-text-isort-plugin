@@ -8,7 +8,7 @@ See below for more information about the library
 
 ### Package Control
 
-Maybe soon available in [@wbond][wbond]'s [package control][package-control].  Just bring up the package control menu in sublime (default `ctrl-shift-p`), and enter `Package Control: Install Package`, search for `Roy`.
+Maybe soon available in [@wbond][wbond]'s [package control][package-control].  Just bring up the package control menu in sublime (default `ctrl-shift-p`), and enter `Package Control: Install Package`, search for `ImportSort`.
 
 ### Manual
 
