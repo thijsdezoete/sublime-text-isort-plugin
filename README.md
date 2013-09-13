@@ -4,6 +4,47 @@ Sublime text isort plugin
 Small plugin that adds a command to sublime which replaces the contents with the output of the isort library.
 See below for more information about the library
 
+## Usage
+
+Compile the entire file by not selecting any text (or all the text).
+Compile a section by selecting just that section.
+Keyboard shortcut `alt-shift-r`
+Command Pallette integration `Roy`
+Context menu `right click`
+
+## Install
+
+### Package Control
+
+Maybe soon available in [@wbond][wbond]'s [package control][package-control].  Just bring up the package control menu in sublime (default `ctrl-shift-p`), and enter `Package Control: Install Package`, search for `Roy`.
+
+### Manual
+
+Clone this repository from your Sublime packages directory:
+
+#### Linux (untested)
+
+```
+$ cd ~/.config/sublime-text-2/Packages
+$ git clone https://github.com/thijsdezoete/sublime-text-isort-plugin
+```
+
+#### OSX
+
+```
+$ cd "~/Library/Application Support/Sublime Text 2/Packages"
+$ git clone https://github.com/thijsdezoete/sublime-text-isort-plugin
+```
+
+#### Windows
+
+```
+$ cd "%APPDATA%\Sublime Text 2"
+$ git clone https://github.com/thijsdezoete/sublime-text-isort-plugin
+```
+
+[isort]: https://github.com/timothycrosley/isort
+[package-control]: https://github.com/wbond/package_control_channel
 
 isort
 =====
