@@ -38,13 +38,17 @@ $ git clone https://github.com/thijsdezoete/sublime-text-isort-plugin
 [isort]: https://github.com/timothycrosley/isort
 [package-control]: https://github.com/wbond/package_control_channel
 
-isort
+![isort](https://raw.github.com/timothycrosley/isort/master/logo.png)
 =====
+
+[![PyPi version](https://pypip.in/v/isort/badge.png)](https://crate.io/packages/isort/)
+[![PyPi downloads](https://pypip.in/d/isort/badge.png)](https://crate.io/packages/isort/)
+[![Build Status](https://travis-ci.org/timothycrosley/isort.png?branch=master)](https://travis-ci.org/timothycrosley/isort)
 
 isort your python imports for you so you don't have to.
 
 isort is a Python utility / library to sort imports alphabetically, and automatically separated into sections.
-It provides a command line utility, Python library, and Kate plugin to quickly sort all your imports.
+It provides a command line utility, Python library, Vim plugin, Sublime plugin, and Kate plugin to quickly sort all your imports.
 
 Before isort:
 
@@ -54,11 +58,13 @@ Before isort:
 
     import os
 
+    from my_lib import Object3
+
     from my_lib import Object2
 
     import sys
 
-    from third_party import lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8, lib9, lib10, lib11, lib12, lib13, lib14, lib15
+    from third_party import lib15, lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8, lib9, lib10, lib11, lib12, lib13, lib14
 
     import sys
 
@@ -78,7 +84,7 @@ After isort:
     from third_party import (lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8,
                              lib9, lib10, lib11, lib12, lib13, lib14, lib15)
 
-    from my_lib import Object, Object2
+    from my_lib import Object, Object2, Object3
 
     print("Hey")
     print("yo")
@@ -120,11 +126,21 @@ or
 
     menu > Python > Sort Imports
 
+Installing isort's Vim plugin
+===================
+The Vim plugin for isort is maintained by @fisadev with installation directions located on the dedicated vim-isort repository
+here: https://github.com/fisadev/vim-isort#installation
+
+Installing isort's Sublime plugin
+===================
+The sublime plugin for isort is maintained by @thijsdezoete with installation directions located on the dedicated sublime-text-isort-plugin
+repository here: https://github.com/thijsdezoete/sublime-text-isort-plugin#install
+
 Installing isort's Kate plugin
 ===================
 To install the kate plugin you must either have pate installed or the very latest version of Kate:
 
-    wget https://raw.github.com/timothycrosley/isort/master/kate_plugin.py --output-document ~/.kde/share/apps/kate/pate/isort_plugin.py
+    wget https://raw.github.com/timothycrosley/isort/master/isort_kate_plugin.py --output-document ~/.kde/share/apps/kate/pate/isort_plugin.py
 
 You will then need to restart kate and enable Python Plugins as well as the isort plugin itself.
 
@@ -216,6 +232,19 @@ past the line_length limit and has 4 possible settings:
         lib4,
     )
 
+4 - Hanging Grid
+
+    from third_party import (
+        lib1, lib2, lib3, lib4
+        lib5, ...)
+
+5 - Hanging Grid Grouped
+
+    from third_party import (
+        lib1, lib2, lib3, lib4
+        lib5, ...
+    )
+
 Ordering by import length
 ======================
 
@@ -236,13 +265,48 @@ Skip processing of a single import
 
 To make isort ignore a single import simply add a comment at the end of the import line containing the text 'isort:skip'
 
-    import module # isort:skip
+    import module  # isort:skip
 
 or
 
-    from xyz import (abc, # isort:skip
+    from xyz import (abc,  # isort:skip
                      yo,
                      hey)
+
+Adding an import to multiple files
+======================
+
+isort makes it easy to add an import statement across multiple files, while being assured it's correctly placed.
+
+from the command line:
+
+    isort -a "from __future__ import print_function" *.py
+
+from within Kate:
+
+    ctrl+]
+
+or:
+
+    menu > Python > Add Import
+
+Removing an import from multiple files
+======================
+
+isort makes it easy to remove an import from multiple files, without having to be concerned with how it was originally
+formatted
+
+from the command line:
+
+    isort -r "os.system" *.py
+
+from within Kate:
+
+    ctrl+shift+]
+
+or:
+
+    menu > Python > Remove Import
 
 Why isort?
 ======================
