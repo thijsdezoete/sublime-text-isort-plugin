@@ -22,36 +22,50 @@
     CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
     OTHER DEALINGS IN THE SOFTWARE.
 """
-
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import os
-try:
-	from configparser import SafeConfigParser
-except ImportError:
-	SafeConfigParser = None
+from collections import namedtuple
+
 from pies import *
 
+WrapModes = ('GRID', 'VERTICAL', 'HANGING_INDENT', 'VERTICAL_HANGING_INDENT', 'VERTICAL_GRID', 'VERTICAL_GRID_GROUPED')
+WrapModes = namedtuple('WrapModes', WrapModes)(*range(len(WrapModes)))
 
-class MultiLineOutput(object):
-    GRID = 0
-    VERTICAL = 1
-    HANGING_INDENT = 2
-    VERTICAL_HANGING_INDENT = 3
-
-
+# Note that none of these lists must be complete as they are simply fallbacks for when included auto-detection fails.
 default = {'force_to_top': [],
            'skip': ['__init__.py', ],
            'line_length': 80,
-           'known_standard_library': ['os', 'sys', 'time', 'copy', 're', '__builtin__', 'thread', 'signal', 'gc',
-                                      'exceptions', 'email'],
+           'known_standard_library': ["abc", "anydbm", "argparse", "array", "asynchat", "asyncore", "atexit", "base64",
+                                      "BaseHTTPServer", "bisect", "bz2", "calendar", "cgitb", "cmd", "codecs",
+                                      "collections", "commands", "compileall", "ConfigParser", "contextlib", "Cookie",
+                                      "copy", "cPickle", "cProfile", "cStringIO", "csv", "datetime", "dbhash", "dbm",
+                                      "decimal", "difflib", "dircache", "dis", "doctest", "dumbdbm", "EasyDialogs",
+                                      "exceptions", "filecmp", "fileinput", "fnmatch", "fractions", "functools", "gc",
+                                      "gdbm", "getopt", "getpass", "gettext", "glob", "grp", "gzip", "hashlib", "heapq",
+                                      "hmac", "imaplib", "imp", "inspect", "itertools", "json", "linecache", "locale",
+                                      "logging", "mailbox", "math", "mhlib", "mmap", "multiprocessing", "operator",
+                                      "optparse", "os", "pdb", "pickle", "pipes", "pkgutil", "platform", "plistlib",
+                                      "pprint", "profile", "pstats", "pwd", "pyclbr", "pydoc", "Queue", "random",
+                                      "re", "readline", "resource", "rlcompleter", "robotparser", "sched", "select",
+                                      "shelve", "shlex", "shutil", "signal", "SimpleXMLRPCServer", "site",
+                                      "sitecustomize", "smtpd", "smtplib", "socket", "SocketServer", "sqlite3",
+                                      "string", "StringIO", "struct", "subprocess", "sys", "sysconfig", "tabnanny",
+                                      "tarfile", "tempfile", "textwrap", "threading", "time", "timeit", "trace",
+                                      "traceback", "unittest", "urllib", "urllib2", "urlparse", "usercustomize", "uuid",
+                                      "warnings", "weakref", "webbrowser", "whichdb", "xml", "xmlrpclib", "zipfile",
+                                      "zipimport", "zlib"],
            'known_third_party': ['google.appengine.api'],
            'known_first_party': [],
-           'multi_line_output': MultiLineOutput.GRID,
+           'multi_line_output': WrapModes.GRID,
            'indent': ' ' * 4,
-           'length_sort': False}
+           'length_sort': False,
+           'add_imports': [],
+           'remove_imports': []}
 
 try:
+    from configparser import SafeConfigParser
+
     with open(os.path.expanduser('~/.isort.cfg')) as config_file:
         config = SafeConfigParser()
         config.readfp(config_file)
@@ -62,5 +76,5 @@ try:
                 default[key.lower()] = value.split(",")
             else:
                 default[key.lower()] = existing_value_type(value)
-except EnvironmentError:
+except (ImportError, EnvironmentError):
     pass
