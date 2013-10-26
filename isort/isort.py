@@ -32,7 +32,6 @@ import codecs
 import copy
 import os
 import os.path
-from . import settings
 from collections import namedtuple
 from sys import path as PYTHONPATH
 from sys import stderr, stdout
@@ -40,7 +39,9 @@ from sys import stderr, stdout
 from natsort import natsorted
 from pies import *
 
-Sections = ("FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY")
+from . import settings
+
+Sections = ("FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER")
 Sections = namedtuple('Sections', Sections)(*range(len(Sections)))
 
 
@@ -107,7 +108,7 @@ class SortImports(object):
            if it can't determine - it assumes it is project code
         """
         if moduleName.startswith("."):
-            return Sections.FIRSTPARTY
+            return Sections.LOCALFOLDER
 
         index = moduleName.find('.')
         if index:
