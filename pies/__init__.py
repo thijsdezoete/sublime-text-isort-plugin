@@ -1,7 +1,16 @@
 """
-    __init__.py
+    pies/__init__.py
 
-    Defines the isort module to include the SortImports utility class as well as any defined settings.
+    Adds necessary hooks to allow Python code to run on multiple major versions of Python at once
+    (currently 2.6 - 3.x)
+
+    Usage:
+        Anywhere you want to gain support for multiple versions of Python simply add the following two lines
+            from __future__ import absolute_import, division, print_function, unicode_literals
+            from pies.overrides import *
+
+        And for changed stdlibs:
+            from pies import [libname]
 
     Copyright (C) 2013  Timothy Edmund Crosley
 
@@ -20,9 +29,4 @@
     OTHER DEALINGS IN THE SOFTWARE.
 """
 
-from __future__ import absolute_import, division, print_function, unicode_literals
-
-from . import settings
-from .isort import SECTION_NAMES, SECTIONS, SortImports
-
-__version__ = "3.1.0"
+__version__ = "2.5.1"
