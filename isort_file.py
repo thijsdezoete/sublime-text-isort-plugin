@@ -33,12 +33,20 @@ class IsortCommand(sublime_plugin.TextCommand):
             pos.append(region)
         return pos
 
+    def get_settings(self):
+        profile = sublime.active_window().active_view().settings().get('isort')
+        return profile or {}
+
     def run(self, edit):
         this_view = self.get_view()
         current_positions = self.get_positions()
 
         this_contents = self.get_buffer_contents(this_view)
-        sorted_imports = SortImports(file_contents=this_contents).output
+        settings = self.get_settings()
+        sorted_imports = SortImports(
+            file_contents=this_contents,
+            **settings
+        ).output
         this_view.replace(edit, self.get_region(this_view), sorted_imports)
 
         # Our sel has moved now..
