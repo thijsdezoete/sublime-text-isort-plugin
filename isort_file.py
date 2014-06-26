@@ -1,5 +1,11 @@
+import os
+import sys
+
 import sublime
 import sublime_plugin
+
+sys.path.append(os.path.dirname(__file__))
+
 from isort import SortImports
 
 
