@@ -1,1 +1,4 @@
-__version__ = '3.0.1'
+# -*- coding: utf-8 -*-
+from __future__ import print_function, division, unicode_literals, absolute_import
+
+__version__ = '3.2.1'
