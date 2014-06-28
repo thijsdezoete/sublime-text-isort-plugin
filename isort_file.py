@@ -6,7 +6,7 @@ import sublime_plugin
 
 sys.path.append(os.path.dirname(__file__))
 
-from isort import SortImports
+from .isort import SortImports
 
 
 class IsortCommand(sublime_plugin.TextCommand):
