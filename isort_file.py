@@ -4,9 +4,9 @@ import sys
 import sublime
 import sublime_plugin
 
-sys.path.append(os.path.dirname(__file__))
-
 from .isort import SortImports
+
+sys.path.append(os.path.dirname(__file__))
 
 
 class IsortCommand(sublime_plugin.TextCommand):
